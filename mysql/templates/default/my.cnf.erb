@@ -54,6 +54,7 @@ innodb_buffer_pool_size         = <%= node[:mysql][:tunable][:innodb_buffer_pool
 innodb_additional_mem_pool_size = <%= node[:mysql][:tunable][:innodb_additional_mem_pool_size] %>
 innodb_flush_log_at_trx_commit  = <%= node[:mysql][:tunable][:innodb_flush_log_at_trx_commit] %>
 innodb_lock_wait_timeout        = <%= node[:mysql][:tunable][:innodb_lock_wait_timeout] %>
+innodb_file_per_table
 #innodb_log_file_size=250M
 #innodb_log_buffer_size=8M
 
