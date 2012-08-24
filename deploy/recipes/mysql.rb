@@ -4,12 +4,8 @@ node[:deploy].each do |application, deploy|
   mysql_command = "/usr/bin/mysql -u #{deploy[:database][:username]} #{node[:mysql][:server_root_password].blank? ? '' : "-p#{node[:mysql][:server_root_password]}"}"
 
   execute "create mysql database" do
-    command "#{mysql_command} -e 'CREATE DATABASE \'#{deploy[:database][:database]}\'' "
+    command "#{mysql_command} -e 'CREATE DATABASE IF NOT EXISTS `#{deploy[:database][:database]}`' "
     action :run
-
-    not_if do
-      system("#{mysql_command} -e 'SHOW DATABASES' | egrep -e '^#{deploy[:database][:database]}$'")
-    end
   end
 
   # this is legacy and you should not rely on it
